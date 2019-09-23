@@ -57,9 +57,8 @@ a {
     border-color: rgb(230, 64, 64);
 }
 
-.emailExists {
+#email_exists {
     color: white;
-    background-color: rgb(230, 64, 64);
+    background-color: rgb(235, 112, 112);
     display: none;
-    width: 70%;
 }

@@ -1,8 +1,7 @@
 const POST_URL = "http://127.0.0.1:8000/register"
-let emailParagraph = document.querySelector('.emailExists')
 
 // jquery, validation clientside
-$().ready(function() {
+$().ready(function() {       
     const form = $('#registrationForm')
     form.validate({
         rules: {
@@ -40,11 +39,12 @@ $().ready(function() {
          request = $.ajax({
              url: POST_URL,
              type: 'post',
-             data: serializedData
+             data: serializedData,
          }).done(function(response) {
                 if(response.exists) {
-                    emailParagraph.style.display = 'block'
-                }
+                    $('#email_exists').css('display', 'block')
+                    $('#email').focus()
+                } 
          })
     })
 })

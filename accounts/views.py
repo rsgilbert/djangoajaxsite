@@ -13,7 +13,6 @@ def register(request):
         gender = request.POST.get('gender')
 
         if User.objects.filter(username=username).exists():
-            print("Found match")
             return JsonResponse({"exists": True})
         else:
             user = User.objects.create_user(username=username)
