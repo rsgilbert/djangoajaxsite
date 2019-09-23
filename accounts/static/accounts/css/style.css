@@ -56,3 +56,10 @@ a {
     color: rgb(230, 64, 64);
     border-color: rgb(230, 64, 64);
 }
+
+.emailExists {
+    color: white;
+    background-color: rgb(230, 64, 64);
+    display: none;
+    width: 70%;
+}

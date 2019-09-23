@@ -1,27 +1,10 @@
-const form = document.getElementById('registrationForm')
 const POST_URL = "http://127.0.0.1:8000/register"
-const MSG = document.querySelector('#message')
-
-
-// wait for response from django view and write message
-let writeMessage = async () => {
-    let formData = new FormData(form)
-    let jsonMessage = await postForm(formData).catch((err) => console.error(err))
-    if(jsonMessage.exists) {
-        MSG.innerHTML = "The email address you provided already exists"
-        console.log("success")
-    }
-} 
-
-let postForm = data => fetch(POST_URL, {
-    method: "POST",
-    body: data
-}).then(response => response.json())
+const emailParagraph = document.querySelector('#emailExists')
 
 // jquery, validation clientside
 $().ready(function() {
-    console.log('ready')
-    $("#registrationForm").validate({
+    const form = $('#registrationForm')
+    form.validate({
         rules: {
             email: {
                 required: true,
@@ -50,9 +33,18 @@ $().ready(function() {
         }
     })
 
-    // call ajax
-    if($("#registrationForm").valid()) {
-        console.log("valid")
-        writeMessage()
-    }
+    form.submit(function(event) {
+         event.preventDefault()
+         let $form = $(this)
+         let serializedData = $form.serialize()
+         request = $.ajax({
+             url: POST_URL,
+             type: 'post',
+             data: serializedData
+         }).done(function(response) {
+                if(response.exists) {
+                    $('#emailExists').style.display = 'block'
+                }
+         })
+    })
 })
