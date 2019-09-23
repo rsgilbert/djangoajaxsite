@@ -44,6 +44,7 @@ $().ready(function() {
                 if(response.exists) {
                     $('#email_exists').css('display', 'block')
                     $('#email').focus()
+                    console.log('submited')
                 } 
          })
     })
