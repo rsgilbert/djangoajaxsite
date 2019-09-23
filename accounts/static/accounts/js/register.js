@@ -2,23 +2,14 @@ const form = document.getElementById('registrationForm')
 const POST_URL = "http://127.0.0.1:8000/register"
 const MSG = document.querySelector('#message')
 
-// form.onsubmit = e => {
-//     e.preventDefault()
-//     writeMessage()
-// }
-
 
 // wait for response from django view and write message
 let writeMessage = async () => {
     let formData = new FormData(form)
     let jsonMessage = await postForm(formData).catch((err) => console.error(err))
-    if(jsonMessage.message === 'success') {
-        MSG.innerHTML = "Wow. You're good at English"
-        MSG.classList.replace("failed", "success")
+    if(jsonMessage.exists) {
+        MSG.innerHTML = "The email address you provided already exists"
         console.log("success")
-    } else {
-        MSG.innerHTML = "Wrong, you should learn the Alphabet"
-        MSG.classList.replace("success", "failed")
     }
 } 
 
@@ -59,4 +50,9 @@ $().ready(function() {
         }
     })
 
+    // call ajax
+    if($("#registrationForm").valid()) {
+        console.log("valid")
+        writeMessage()
+    }
 })
