@@ -1,0 +1,20 @@
+<html>
+    <head>
+        {% load static %}
+        <title>Ajax</title> 
+        <link href="{% static 'css/ajax.css' %}" rel="stylesheet">   
+    </head>
+    <body>
+
+        <p>Select a name that starts with a vowel letter</p>
+        <form method="POST" action="{% url 'ajaxapp:ajax' %}">
+            {% csrf_token %}
+            {{ form.names }} 
+         </form>    
+
+         <!-- message depending on selection -->
+         <p class="success" id="message"></p>
+         
+        <script src="{% static 'js/ajax.js' %}"></script>
+    </body>
+</html>

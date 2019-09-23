@@ -1,0 +1,15 @@
+.success {
+    background: green;
+    color: white;
+    width: 80%; 
+    text-align: center;
+}
+
+.failed {
+    background: #ff8989;
+    color: white;
+    width: 80%; 
+    text-align: center;
+}
+
+
