@@ -5,3 +5,6 @@ from django.contrib.auth.models import User
 class UserDetail(models.Model):
     user = models.ForeignKey(on_delete=models.CASCADE, to=User)
     gender = models.CharField(max_length=10)
+
+    def __repr__(self):
+        return self.user

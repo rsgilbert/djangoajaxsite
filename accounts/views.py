@@ -20,7 +20,6 @@ def register(request):
             user.save()
             user_detail = UserDetail(user=user, gender=gender)
             user_detail.save()
-            return redirect('accounts:login')
-
+            # no need to return anything since we are using jquery
+            # not recommended though as it couples the api
     return render(request, "accounts/registration.html", {})
-    

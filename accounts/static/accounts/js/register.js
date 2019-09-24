@@ -1,7 +1,7 @@
 const POST_URL = "http://127.0.0.1:8000/register"
 
 // jquery, validation clientside
-$().ready(function() {       
+$().ready(function() {
     const form = $('#registrationForm')
     form.validate({
         rules: {
@@ -28,7 +28,6 @@ $().ready(function() {
                 required: "Confirm password",
                 equalTo: "Passwords do not match"
             }
-
         }
     })
 
@@ -44,8 +43,9 @@ $().ready(function() {
                 if(response.exists) {
                     $('#email_exists').css('display', 'block')
                     $('#email').focus()
-                    console.log('submited')
-                } 
+                } else {
+                  location.href = 'login'
+                }
          })
     })
 })
