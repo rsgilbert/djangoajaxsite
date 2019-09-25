@@ -45,7 +45,9 @@ $().ready(function() {
                     $('#email_exists').css('display', 'block')
                     $('#email').focus()
                     console.log('submited')
-                } 
+                } else {
+                    location.href = 'login'
+                  }
          })
     })
 })
