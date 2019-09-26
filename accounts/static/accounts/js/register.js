@@ -44,9 +44,9 @@ $().ready(function() {
                 if(response.exists) {
                     $('#email_exists').css('display', 'block')
                     $('#email').focus()
-                    console.log('submited')
+                    alert('failed to log in')
                 } else {
-                    location.href = 'login'
+                    alert('successfully logged in')
                   }
          })
     })
