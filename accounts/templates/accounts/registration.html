@@ -17,25 +17,25 @@
     </head>
     <body>
         <!-- Added method=POST and csrf_token -->
-        <form method="POST" id='registrationForm' action="{% url 'accounts:register' %}">
+        <form method="POST" id='registrationForm'>
             {% csrf_token %}
             <div class="container">
                 <h1>Register</h1>
                 <p>Please fill in this form to create an account</p>
                 <hr>
-                    <label class="emailExists" for="email"><b>Email</b></label>
-                    <input id="email" type="email" placeholder="Enter Email" name="email" required>
-                    <p id="email_exists">The email you entered exists</p>
+                    <label for="email"><b>Email</b></label>
+                    <input id="email" class="error" placeholder="Enter Email" name="email" required>
                     <br></br> 
                     <label for="gender"><b>Gender</b></label>
-                    <select name="gender">
+                    <select name="gender" class="error">
+						<option value="">Please select your gender</option>
                         <option>Male</option>
                         <option>Female</option>
                     </select>
                     <br></br> 
 
                     <label for="password"><b>Password</b></label>
-                    <input id="password" type="password" placeholder="Enter Password" name="password" required>
+                    <input id="password" type="password" class="error" placeholder="Enter Password" name="password" required>
                     <br>
                     <label for="confirm_password"><b>Repeat password</b></label>
                     <input id="confirm_password" type="password" placeholder="Repeat password" name="confirm_password" required>

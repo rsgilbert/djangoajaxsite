@@ -4,58 +4,85 @@ const POST_URL = "http://localhost:8000/register"
 // jquery, validation clientside
 $().ready(function() {
 	const form = $('#registrationForm')
-    form.validate({
-        rules: {
-            email: {
-                required: true,
-                email: true
-            },
-            password: {
-                required: true,
-                minlength: 6
-            }, confirm_password: {
-                required: true,
-                equalTo: '#password'
-            }
-        },
-        messages: {
-            email: {
-                required: "Please enter your email address",
-                email: "Please enter a valid email"
-            }, password: {
-                required: "Enter your password",
-                minlength: "Short password"
-            }, confirm_password: {
-                required: "Confirm password",
-                equalTo: "Passwords do not match"
-            }
-        }
-    })
-
-    form.submit(function(event) {
-         event.preventDefault()
-         let $form = $(this)
-         let serializedData = $form.serialize()
-         request = $.ajax({
-             url: POST_URL,
-             type: 'post',
-             data: serializedData,
-         }).done(function(response) {
-                if(response.exists) {
-                    $('#email_exists').css('display', 'block')
-                    $('#email').focus()
-                    swal({
-						title: "Error!",
-						text: "Email already exists!",
+	let isSuccess = false
+	form.submit(function(e) {
+		e.preventDefault()
+	})
+	
+	var validator = form.validate({
+		onfocusout: false,
+		errorPlacement: function(error, element) {
+			console.log(error)
+		},
+		rules: {
+			email: {
+				required: true,
+				email: true
+			},
+			gender: {
+				required: true,
+			},
+			password: {
+				required: true,
+				minlength: 6,
+			}, confirm_password: {
+				required: true,
+				equalTo: '#password'
+			}
+		},
+		messages: {
+			email: {
+				required: "Please enter your email address",
+				email: "Please enter a valid email"
+			}, 
+			gender: {
+				required: "Please select your gender",
+			},
+			password: {
+				required: "Enter your password",
+				minlength: "Your password is too short, use atleast 6 characters"
+			}, 
+			confirm_password: {
+				required: "You must confirm your password",
+				equalTo: "Your passwords do not match"
+			}
+		},
+		invalidHandler: function(event, validator) {
+			var errors = validator.errorList
+			if(errors) {
+				error1 = errors[0]
+				swal({
+					text: error1.message,
+					icon: 'error'
+				})
+			}
+		},
+		submitHandler: function() {
+			const formData = form.serialize()
+			request = $.ajax({
+				url: POST_URL,
+				type: 'post',
+				data: formData,
+			}).done(function(response) {
+				if(response.exists) {
+					swal({
+						text: "Email already exists! Please use a different email",
 						icon: "error",
-					  });
-                } else {
+					});
+				} else {
 					swal({
 						title: "Good job!",
 						text: "You have successfully registered!",
 						icon: "success",
-					  });
-                  }
-         })
-    })
+					});
+					return
+				}
+				
+			})
+
+		}
+	})
+	$('#registrationForm')[0].reset()
+	var val = $('#registrationForm').validate()
+	validator.resetForm()
 })

@@ -53,7 +53,6 @@ a {
 
 /* added for validation errors */
 .error {
-    color: rgb(230, 64, 64);
     border-color: rgb(230, 64, 64);
 }
 
