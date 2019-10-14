@@ -75,14 +75,12 @@ $().ready(function() {
 						text: "You have successfully registered!",
 						icon: "success",
 					});
-					return
+					validator.resetForm()
+					$('form').get(0).reset()
 				}
 				
 			})
 
 		}
 	})
-	$('#registrationForm')[0].reset()
-	var val = $('#registrationForm').validate()
-	validator.resetForm()
 })
