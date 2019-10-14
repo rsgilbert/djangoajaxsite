@@ -1,8 +1,9 @@
-const POST_URL = "http://127.0.0.1:8000/register"
+const POST_URL = "http://localhost:8000/register"
+
 
 // jquery, validation clientside
 $().ready(function() {
-    const form = $('#registrationForm')
+	const form = $('#registrationForm')
     form.validate({
         rules: {
             email: {
@@ -43,9 +44,18 @@ $().ready(function() {
                 if(response.exists) {
                     $('#email_exists').css('display', 'block')
                     $('#email').focus()
+                    swal({
+						title: "Error!",
+						text: "Email already exists!",
+						icon: "error",
+					  });
                 } else {
-                  location.href = 'login'
-                }
+					swal({
+						title: "Good job!",
+						text: "You have successfully registered!",
+						icon: "success",
+					  });
+                  }
          })
     })
 })

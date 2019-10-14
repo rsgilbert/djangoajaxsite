@@ -6,10 +6,13 @@
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
 
-        {% load static %}
-        <script src="{% static 'accounts/js/jqueryvalidate.js' %}"></script>
+		{% load static %}
+		<!-- these script imports should be befor register.js import -->
+		<script src="{% static 'accounts/js/sweetalert.min.js' %}"></script>
+		<script src="{% static 'accounts/js/jqueryvalidate.js' %}"></script>
+		
         <script src="{% static 'accounts/js/register.js' %}"></script>
-  
+
         <link rel="stylesheet" href="{% static 'accounts/css/style.css' %}">
     </head>
     <body>
