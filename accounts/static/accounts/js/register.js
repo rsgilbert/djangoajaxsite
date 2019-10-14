@@ -10,10 +10,6 @@ $().ready(function() {
 	})
 	
 	var validator = form.validate({
-		onfocusout: false,
-		errorPlacement: function(error, element) {
-			console.log(error)
-		},
 		rules: {
 			email: {
 				required: true,
